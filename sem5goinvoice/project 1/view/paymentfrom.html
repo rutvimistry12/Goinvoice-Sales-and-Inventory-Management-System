@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Inward Payment</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f7fa;
+      margin: 0;
+      padding: 40px;
+    }
+
+    .payment-form {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .payment-form h2 {
+      font-size: 22px;
+      font-weight: 600;
+      color: #0067AF;
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      font-size: 14px;
+      font-weight: 500;
+      color: #333;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .form-group label.required::after {
+      content: " *";
+      color: red;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 90%;
+      padding: 10px 12px;
+      font-size: 14px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      transition: 0.3s ease;
+      margin-right: 60px;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #0067AF;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(0,103,175,0.2);
+    }
+
+    input[readonly],
+    textarea[readonly] {
+      background-color: #f4f4f4;
+      color: #888;
+    }
+
+    .receipt-no-fields {
+      display: flex;
+      gap: 10px;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .btn-save {
+      background-color: #0067AF;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .btn-save:hover {
+      background-color: #00966f;
+    }
+
+    .btn-close {
+      background-color: #e0e0e0;
+      color: #333;
+      border: none;
+      padding: 10px 18px;
+      font-size: 14px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .btn-close a{
+        color: black;
+    }
+  </style>
+</head>
+<body>
+
+<div class="payment-form">
+  <h2>Create Inward Payment</h2>
+
+  <div class="form-group">
+    <label class="required">Receipt No</label>
+    <div class="receipt-no-fields">
+      <input type="text" placeholder="Receipt Prefix">
+      <input type="text" value="1" readonly>
+      <input type="text" placeholder="Receipt Postfix">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="required">Company Name</label>
+    <input type="text" placeholder="Enter company name">
+  </div>
+
+  <div class="form-group">
+    <label>Address</label>
+    <textarea rows="2" readonly>Auto-filled address...</textarea>
+  </div>
+
+  <div class="form-group">
+    <label>GSTIN / PAN</label>
+    <input type="text" readonly value="Auto-filled GSTIN">
+  </div>
+
+  <div class="form-group">
+    <label>Total Outstanding</label>
+    <input type="text" readonly value="₹0.00">
+  </div>
+
+  <div class="form-group">
+    <label class="required">Payment Date</label>
+    <input type="date">
+  </div>
+
+  <div class="form-group">
+    <label class="required">Amount</label>
+    <input type="number" placeholder="Enter your amount">
+  </div>
+
+  <div class="form-group">
+    <label class="required">Payment Type</label>
+    <select>
+      <option>Select Payment Type</option>
+      <option>Cash</option>
+      <option>Cheque</option>
+      <option>Bank Transfer</option>
+      <option>UPI</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Payment Note</label>
+    <textarea rows="2" placeholder="Enter your payment note"></textarea>
+  </div>
+
+  <div class="button-group">
+    <button class="btn-close"><a href="payment.html">Close</a></button>
+    <button class="btn-save">Save</button>
+  </div>
+</div>
+
+</body>
+</html>

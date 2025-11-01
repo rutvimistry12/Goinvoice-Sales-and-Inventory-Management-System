@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Product / Service</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8f9fa;
+    }
+
+    .card {
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      border: none;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .card-header {
+      background-color: #0067AF;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 12px 20px;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+
+    .form-control, .form-select, textarea {
+      border-radius: 8px;
+      font-size: 0.95rem;
+    }
+
+    .form-label {
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+
+    .btn-success {
+      background-color: #0067AF;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 500;
+    }
+
+    .btn-secondary {
+      background-color: #6c757d;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 500;
+    }
+
+    .btn-success:hover, .btn-secondary:hover {
+      opacity: 0.9;
+    }
+
+    .form-check-input {
+      cursor: pointer;
+    }
+
+    .form-check-label {
+      margin-right: 15px;
+      cursor: pointer;
+    }
+
+    .upload-box {
+      border: 2px dashed #ccc;
+      border-radius: 10px;
+      text-align: center;
+      padding: 40px;
+      color: #888;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+    #close a{
+        color: white;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h5>Add Product / Service</h5>
+  <form>
+
+    <!-- Product Details -->
+    <div class="card">
+      <div class="card-header">Product Details</div>
+      <div class="card-body">
+        <div class="mb-3">
+          <label class="form-label">Type</label><br>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="type" value="product" checked>
+            <label class="form-check-label">Product</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="type" value="service">
+            <label class="form-check-label">Service</label>
+          </div>
+        </div>
+
+        <input type="text" class="form-control mb-2" placeholder="Enter product name">
+        <input type="text" class="form-control mb-2" placeholder="Enter product code">
+        <input type="text" class="form-control mb-2" placeholder="Enter HSN/SAC code">
+        <input type="text" class="form-control mb-2" placeholder="Enter SKU/Batch code">
+        <input type="text" class="form-control" placeholder="Enter unit (e.g., PCS, BOX)">
+      </div>
+    </div>
+
+    <!-- Tax Details -->
+    <div class="card">
+      <div class="card-header">Tax Details</div>
+      <div class="card-body">
+        <input type="text" class="form-control mb-2" placeholder="Tax Type (e.g., GST)">
+        <input type="text" class="form-control mb-2" placeholder="GST %">
+        <select class="form-select mb-2">
+          <option>Select Tax Rate</option>
+        </select>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="taxCheck">
+          <label for="taxCheck" class="form-check-label">Product is eligible for Input Credit?</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manage Stock -->
+    <div class="card">
+      <div class="card-header">Manage Stock</div>
+      <div class="card-body">
+        <label class="form-label">Type</label><br>
+        <div class="form-check form-check-inline">
+          <input type="radio" class="form-check-input" name="stock" checked>
+          <label class="form-check-label">Normal</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input type="radio" class="form-check-input" name="stock">
+          <label class="form-check-label">Batch</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input type="radio" class="form-check-input" name="stock">
+          <label class="form-check-label">No Stock</label>
+        </div>
+
+        <input type="text" class="form-control mb-2 mt-3" placeholder="Enter available quantity">
+        <input type="text" class="form-control mb-2" placeholder="Enter MRP">
+        <input type="text" class="form-control mb-2" placeholder="Enter Purchase Price">
+        <input type="text" class="form-control mb-2" placeholder="Enter Purchase Price (Incl. Tax)">
+        <input type="text" class="form-control" placeholder="Enter Sale Price">
+      </div>
+    </div>
+
+    <!-- Product Group -->
+    <div class="card">
+      <div class="card-header">Product Group</div>
+      <div class="card-body">
+        <input type="text" class="form-control mb-2" placeholder="Enter product group">
+        <button class="btn btn-outline-success btn-sm">+ Add Product Group</button>
+      </div>
+    </div>
+
+    <!-- Additional Details -->
+    <div class="card">
+      <div class="card-header">Additional Details</div>
+      <div class="card-body">
+        <input type="text" class="form-control mb-2" placeholder="Product Discount">
+        <select class="form-select mb-3">
+          <option>Select Discount Type</option>
+        </select>
+
+        <div class="upload-box mb-3">
+          <input type="file" class="form-control mb-2" id="productImage" accept="image/*">
+          <label for="productImage" class="form-label">Upload Product Image</label>
+          <p class="mb-0">Drag & Drop or Click to Upload Product Image</p>
+        </div>
+
+        <div class="form-check mb-2">
+          <input type="checkbox" class="form-check-input" id="trackProduct">
+          <label class="form-check-label" for="trackProduct">Track inventory for this product</label>
+        </div>
+
+        <div class="form-check mb-3">
+          <input type="checkbox" class="form-check-input" id="visibleProduct" checked>
+          <label class="form-check-label" for="visibleProduct">Product will be visible on all documents.</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between mt-4">
+      <button class="btn btn-secondary" id="close"><a href="product.html">Close</a></button>
+      <button class="btn btn-success">Save</button>
+    </div>
+
+  </form>
+</div>
+</body>
+</html>

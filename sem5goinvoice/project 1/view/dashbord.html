@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashbord</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+     integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <link rel="stylesheet" href="main.css" />
+     <link rel="stylesheet" href="dashbord.css" />
+  <!-- API handler (defines window.apiHandler and window.offlineHandler) -->
+  <script src="../front/js/api-handler.js"></script>
+  <script>
+    // Auto-redirect to PHP version for consistent header/navbar
+    (function(){
+      try {
+        var path = window.location.pathname || '';
+        if (path.toLowerCase().endsWith('/view/dashbord.html')) {
+          window.location.replace('dashbord.php');
+        }
+      } catch (_) {}
+    })();
+  </script>
+</head>
+ <body>
+  <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center" href="#" style="padding: 0.5rem 1rem;">
+        <img src="../images/invoicelogo.png" width="60" height="60" class="d-inline-block" alt="GoInvoice Logo" style="margin-right: 10px;">
+        <span class="h4 mb-0" style="color: #333; font-weight: 600;">GoInvoice</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse ms-5" id="navbarNavAltMarkup">
+        <div class="navbar-nav ms-5">
+          <a class="nav-link" href="../front/main.html">Home</a>
+          <a class="nav-link" href="../front/feactures.html">Features</a>
+          <a class="nav-link" href="../front/patner.html">Partner</a>
+          <a class="nav-link" href="../front/about.html">About</a>
+          <a class="nav-link" href="../front/contact.html">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+    <div class="container-fluid">
+      <span>Welcome, </span><strong id="welcomeNameStrip"></strong>
+    </div>
+
+  <header class="top-bar">
+    <div class="left-section"></div>
+    <div class="right-section">
+      <button class="create-btn"><i class="fa-solid fa-plus"></i> 
+        Create <span class="arrow">
+            <i class="fa-solid fa-caret-down"></i></span></button>
+      <select class="fiscal-select">
+        <option>F.Y. 2025-2026</option>
+      </select>
+      <span class="icon"><i class="fa-regular fa-calendar"></i></span>
+      <span class="icon"><i class="fa-regular fa-bell"></i></span>
+      <span class="icon"><i class="fa-solid fa-circle-user"></i></span>
+    </div>
+  </header>
+  <div class="nav-tabs">
+    <div class="tab active">
+      <a href="dashbord.php">
+      <div class="nav-icon"><i class="fa-solid fa-gauge"></i></div>
+      <div class="label">Dashboard</div></a>
+    </div>
+    <div class="tab">
+      <a href="customer.php">
+      <div class="nav-icon"><i class="fa-solid fa-users"></i></div>
+      <div class="label">Customer / Vendor</div></a>
+    </div>
+    <div class="tab">
+      <a href="product.php">
+      <div class="nav-icon"><i class="fa-solid fa-box-open"></i></div>
+      <div class="label">Products / Services</div></a>
+    </div>
+    <div class="tab">
+      <a href="salesinvoice.php">
+      <div class="nav-icon"><i class="fa-solid fa-receipt"></i></div>
+      <div class="label">Sale<br>Invoice</div></a>
+    </div>
+    <div class="tab">
+      <a href="purchase.php">
+      <div class="nav-icon"><i class="fa-solid fa-cart-arrow-down"></i></div>
+      <div class="label">Purchase<br>Invoice</div></a>
+    </div>
+    <div class="tab">
+      <a href="payment.php">
+      <div class="nav-icon"><i class="fa-solid fa-credit-card"></i></div>
+      <div class="label">Payment</div></a>
+    </div>
+  </div>
+
+<div class="profile-card">
+  <h2>Complete your profile</h2>
+  <div class="profile-section">
+    <div>
+      <strong>Add Your Business Logo</strong>
+      <p>Print your business logo on your invoice to impress your customer with a beautiful invoice.</p>
+    </div>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <img id="logoPreview" src="" alt="Logo" style="display:none; width:48px; height:48px; object-fit:contain; border:1px solid #eee; border-radius:6px;"/>
+      <button id="btnAddLogo" class="action-button" type="button">Add Logo</button>
+      <input id="logoInput" type="file" accept="image/*" style="display:none" />
+    </div>
+  </div>
+  <div class="profile-section">
+    <div>
+      <strong>Verify Email!</strong>
+      <p>Please check your email and follow the link to verify your email address.</p>
+    </div>
+    <button class="action-button">Send Email</button>
+  </div>
+  <div class="profile-section">
+    <div>
+      <strong>Add Your Bank & UPI Details</strong>
+      <p>Get a faster payment with a UPI QR code. These UPI & Bank details will be printed on your invoice.</p>
+    </div>
+    <button id="btnAddBank" class="action-button" type="button" data-bs-toggle="modal" data-bs-target="#bankModal">Add Bank</button>
+  </div>
+</div>
+<div class="top-bar-action">
+  <span class="last-updated">Last Updated 14 minute ago</span>
+  
+  <div class="controls">
+    <button class="date-button">
+      <span>02-02-2025 To 02-08-2025</span>
+      <i class="calendar-icon">&#128197;</i>
+    </button>
+    <button class="refresh-button">
+      Refresh <i class="refresh-icon">&#10227;</i>
+    </button>
+  </div>
+</div>
+<div class="dashboard-container11">
+  <div class="card">
+    <p class="title">Sale - Aug 2025</p>
+    <p class="amount">₹ 0</p>
+    <p class="gst">+GST 0</p>
+    
+  </div>
+
+  <div class="card">
+    <p class="title">Purchase - Aug 2025</p>
+    <p class="amount">₹ 0</p>
+    <p class="gst">+GST 0</p>
+  </div>
+
+  <div class="card">
+    <p class="title">Expense - ₹ 0</p>
+    <p class="title">Income - ₹ 0</p>
+  </div>
+</div>
+<div class="outstanding-container">
+  <!-- Sales Outstanding -->
+  <div class="outstanding-card">
+    <h5>Sales Outstanding</h5>
+    <p class="subtext">Total Receivables ₹ 0.00</p>
+    <div class="progress-bar"></div>
+
+    <div class="row">
+      <div class="col">
+        <p><span class="dot green"></span> ₹ 0.00</p>
+        <p class="label">CURRENT</p>
+      </div>
+      <div class="col">
+        <p><span class="dot yellow"></span> ₹ 0.00</p>
+        <p class="label">1–15 Days</p>
+      </div>
+      <div class="col">
+        <p><span class="dot orange"></span> ₹ 0.00</p>
+        <p class="label">16–30 Days</p>
+      </div>
+      <div class="col">
+        <p><span class="dot red"></span> ₹ 0.00</p>
+        <p class="label">30+ Days</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Purchase Outstanding -->
+  <div class="outstanding-card">
+    <h5>Purchase Outstanding</h5>
+    <p class="subtext">Total Payables ₹ 0.00</p>
+    <div class="progress-bar"></div>
+
+    <div class="row">
+      <div class="col">
+        <p><span class="dot green"></span> ₹ 0.00</p>
+        <p class="label">CURRENT</p>
+      </div>
+      <div class="col">
+        <p><span class="dot yellow"></span> ₹ 0.00</p>
+        <p class="label">1–15 Days</p>
+      </div>
+      <div class="col">
+        <p><span class="dot orange"></span> ₹ 0.00</p>
+        <p class="label">16–30 Days</p>
+      </div>
+      <div class="col">
+        <p><span class="dot red"></span> ₹ 0.00</p>
+        <p class="label">30+ Days</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--banner-->
+<div class="banner">
+  <div class="banner-left">
+    <h2>Confused where to start?<br>Let’s take a quick tour</h2>
+    <button class="demo-btn">
+      <span class="play-icon">▶</span> Watch Demo Video
+    </button>
+  </div>
+
+  <div class="banner-right">
+    <img src="../images/headerlogo.png" alt="Dashboard preview" class="device-img" />
+    <div class="call-info">
+      <p><i class="phone-icon">📞
+      </i> or Call Us For Demo</p>
+      <p class="number">+91 704-314-6478</p>
+      <p class="timing">(10 AM To 7 PM / Everyday)</p>
+    </div>
+  </div>
+</div>
+
+<!-- footer -->
+
+<div class="dashboard">
+    <div class="row">
+      <div class="box"><h5>Best Selling Products</h5><br><span>No records found</span></div>
+      <div class="box"><h5>Least Selling Products</h5><br><span>No records found</span></div>
+      <div class="box"><h5>Low Stock</h5><br><span>No records found</span></div>
+    </div>
+
+    <div class="row">
+      <div class="box wide"><h5>Top Customers</h5><br><span>No records found</span></div>
+      <div class="box wide"><h5>Top Vendors</h5><br><span>No records found</span></div>
+    </div>
+
+    <div class="row">
+      <div class="box full"><h5>Sales Invoice Due</h5><br><span>No records found</span></div>
+    </div>
+
+    <div class="row">
+      <div class="box full"><h5>Purchase Invoice Due</h5><br><span>No records found</span></div>
+    </div>
+  
+  
+  <!-- Bank Details Modal -->
+  <div class="modal fade" id="bankModal" tabindex="-1" aria-labelledby="bankModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="bankModalLabel">Bank & UPI Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="bankForm">
+            <div class="mb-3">
+              <label class="form-label">Account Holder</label>
+              <input type="text" class="form-control" id="account_holder" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Bank Name</label>
+              <input type="text" class="form-control" id="bank_name" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Account Number</label>
+              <input type="text" class="form-control" id="account_number" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">IFSC</label>
+              <input type="text" class="form-control" id="ifsc" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">UPI ID</label>
+              <input type="text" class="form-control" id="upi_id" />
+            </div>
+          </form>
+          <div id="bankMsg" class="text-success" style="display:none;"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button id="btnSaveBank" type="button" class="btn btn-primary">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      try {
+        const saved = localStorage.getItem('goinvoice_user');
+        if (!saved) {
+          // Not logged in on the front-end, send to login page
+          window.location.href = '../front/login.html';
+          return;
+        }
+        const data = JSON.parse(saved);
+        const name = (data && data.name) ? data.name : '';
+        const el = document.getElementById('welcomeName');
+        if (el) el.textContent = name;
+        const elStrip = document.getElementById('welcomeNameStrip');
+        if (elStrip) elStrip.textContent = name;
+
+        // Load profile (logo + bank) and initialize handlers
+        initProfileSection();
+
+        // Auto-save a monthly snapshot using live dashboard API data (silent)
+        autoSaveMonthlySnapshot();
+      } catch (e) {
+        // Any parsing/storage issue: redirect to login
+        window.location.href = '../front/login.html';
+      }
+    });
+
+    async function initProfileSection() {
+      // Prefill profile from API
+      try {
+        const prof = await apiHandler.getProfile();
+        if (prof && prof.success && prof.data) {
+          const { logo_path, account_holder, bank_name, account_number, ifsc, upi_id } = prof.data;
+          const img = document.getElementById('logoPreview');
+          if (img && logo_path) {
+            img.src = logo_path;
+            img.style.display = 'inline-block';
+          }
+          // Prefill bank modal fields
+          const setVal = (id, val) => { const el = document.getElementById(id); if (el) el.value = val || ''; };
+          setVal('account_holder', account_holder);
+          setVal('bank_name', bank_name);
+          setVal('account_number', account_number);
+          setVal('ifsc', ifsc);
+          setVal('upi_id', upi_id);
+        }
+      } catch (err) {
+        console.warn('Profile load failed:', err);
+      }
+
+      // Logo upload handlers
+      const btnLogo = document.getElementById('btnAddLogo');
+      const inputLogo = document.getElementById('logoInput');
+      const imgPrev = document.getElementById('logoPreview');
+      if (btnLogo && inputLogo) {
+        btnLogo.addEventListener('click', () => inputLogo.click());
+        inputLogo.addEventListener('change', async (e) => {
+          const file = e.target.files && e.target.files[0];
+          if (!file) return;
+          try {
+            btnLogo.disabled = true; btnLogo.textContent = 'Uploading...';
+            const res = await apiHandler.uploadLogo(file);
+            if (res && res.success && res.data && res.data.logo_path) {
+              if (imgPrev) {
+                imgPrev.src = res.data.logo_path;
+                imgPrev.style.display = 'inline-block';
+              }
+            } else {
+              alert(res.error || 'Upload failed');
+            }
+          } catch (err) {
+            alert(err.message || 'Upload failed');
+          } finally {
+            btnLogo.disabled = false; btnLogo.textContent = 'Add Logo';
+            inputLogo.value = '';
+          }
+        });
+      }
+
+      // Save bank details
+      const btnSaveBank = document.getElementById('btnSaveBank');
+      if (btnSaveBank) {
+        btnSaveBank.addEventListener('click', async () => {
+          const payload = {
+            account_holder: document.getElementById('account_holder')?.value || '',
+            bank_name: document.getElementById('bank_name')?.value || '',
+            account_number: document.getElementById('account_number')?.value || '',
+            ifsc: document.getElementById('ifsc')?.value || '',
+            upi_id: document.getElementById('upi_id')?.value || ''
+          };
+          btnSaveBank.disabled = true; btnSaveBank.textContent = 'Saving...';
+          const msg = document.getElementById('bankMsg');
+          if (msg) { msg.style.display = 'none'; msg.className = 'text-success'; }
+          try {
+            const res = await apiHandler.updateBank(payload);
+            if (res && res.success) {
+              if (msg) { msg.textContent = 'Saved successfully'; msg.style.display = 'block'; }
+            } else {
+              if (msg) { msg.textContent = res.error || 'Save failed'; msg.style.display = 'block'; msg.className = 'text-danger'; }
+            }
+          } catch (err) {
+            if (msg) { msg.textContent = err.message || 'Save failed'; msg.style.display = 'block'; msg.className = 'text-danger'; }
+          } finally {
+            btnSaveBank.disabled = false; btnSaveBank.textContent = 'Save';
+          }
+        });
+      }
+    }
+
+    async function autoSaveMonthlySnapshot() {
+      try {
+        const data = await apiHandler.getDashboardData();
+        if (!data || !data.success) return;
+        const now = new Date();
+        const period_key = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`; // YYYY-MM
+        const payload = {
+          period_type: 'month',
+          period_key,
+          stats: data.data?.stats || {},
+          top_customers: data.data?.top_customers || [],
+          top_products: data.data?.top_products || [],
+          customers: data.data?.stats?.customers || 0,
+          products: data.data?.stats?.products || 0
+        };
+        await apiHandler.saveSnapshot(payload);
+      } catch (_) {
+        // ignore errors silently to not disturb UX
+      }
+    }
+  </script>
+  <footer class="dashboard-footer">
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <a href="../front/main.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> Back to GoInvoice.Com
+          </a>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <p class="copyright mb-0">
+            Copyright &copy; 2025 Go Invoice - Best GST Billing Software. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <style>
+    .dashboard-footer {
+      background-color: #f8f9fa;
+      padding: 15px 0;
+      border-top: 1px solid #e9ecef;
+      margin-top: 30px;
+    }
+    .back-link {
+      color: #6c757d;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .back-link:hover {
+      color: #0d6efd;
+      text-decoration: underline;
+    }
+    .copyright {
+      color: #6c757d;
+      font-size: 14px;
+      margin: 0;
+    }
+    @media (max-width: 767.98px) {
+      .dashboard-footer .col-md-6 {
+        text-align: center !important;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+ </body>
+ </html>

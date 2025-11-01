@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Add Customer / Vendor</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Add the full CSS here -->
+  <style>
+    body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f8f9fa;
+  }
+
+  h5 {
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  /* Card styling */
+  .card {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    border: none;
+    border-radius: 12px;
+    margin-bottom: 20px;
+  }
+
+  .card-header {
+    background-color: #0067AF;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 12px 20px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+
+  /* Form controls */
+  .form-control,
+  .form-select,
+  textarea {
+    border-radius: 8px;
+    font-size: 0.95rem;
+    padding: 8px 12px;
+  }
+
+  .form-label {
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+
+  /* Buttons */
+  .btn-success {
+    background-color: #0067AF;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    color: white;
+  }
+
+  .btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    color: white;
+  }
+
+  .btn-success:hover,
+  .btn-secondary:hover {
+    opacity: 0.9;
+  }
+
+  /* Radio buttons and checkbox */
+  .form-check-input {
+    cursor: pointer;
+  }
+
+  .form-check-label {
+    margin-right: 15px;
+    cursor: pointer;
+  }
+
+  /* Layout container */
+  .container {
+    max-width: 900px;
+    margin: auto;
+  }
+
+  /* Section spacing */
+  .mb-4 {
+    margin-bottom: 1.5rem !important;
+  }
+
+  .mb-3 {
+    margin-bottom: 1rem !important;
+  }
+
+  .mb-2 {
+    margin-bottom: 0.5rem !important;
+  }
+  /* Button alignment */
+  .d-flex.justify-content-between {
+    margin-top: 20px;
+  }
+  #close a{
+    color: white;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="container mt-4 mb-5">
+    <h5>Add Customer / Vendor</h5>
+    <form>
+      <!-- Customer / Vendor Detail -->
+      <div class="card mb-4">
+        <div class="card-header">Customer / Vendor Detail</div>
+        <div class="card-body">
+          <div class="mb-3">
+            <label class="form-label">Company Type</label><br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="companyType" id="customer" value="Customer">
+              <label class="form-check-label" for="customer">Customer</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="companyType" id="vendor" value="Vendor">
+              <label class="form-check-label" for="vendor">Vendor</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="companyType" id="both" value="CustomerVendor">
+              <label class="form-check-label" for="both">Customer / Vendor</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">GSTIN</label>
+              <input type="text" class="form-control" placeholder="Enter GSTIN">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Company Name</label>
+              <input type="text" class="form-control" placeholder="Enter company name">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Contact Person</label>
+              <input type="text" class="form-control" placeholder="Enter contact person">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" placeholder="Enter email address">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Registration Type</label>
+              <select class="form-select">
+                <option selected>Unregistered</option>
+                <option>Registered</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">PAN</label>
+              <input type="text" class="form-control" placeholder="Enter PAN">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Billing Address -->
+      <div class="card mb-4">
+        <div class="card-header">Billing Address</div>
+        <div class="card-body">
+          <div class="mb-3">
+            <input type="text" class="form-control mb-2" placeholder="Enter address 1">
+            <input type="text" class="form-control mb-2" placeholder="Enter address 2">
+            <input type="text" class="form-control mb-2" placeholder="Enter landmark">
+          </div>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <input type="text" class="form-control" placeholder="Enter city">
+            </div>
+            <div class="col-md-4 mb-3">
+              <select class="form-select">
+                <option selected>India</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-3">
+              <select class="form-select">
+                <option selected>Gujarat (GJ)</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <input type="text" class="form-control" placeholder="Enter pincode">
+            </div>
+            <div class="col-md-6 d-flex align-items-end">
+              <button class="btn btn-secondary">+ Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Opening Balance -->
+      <div class="card mb-4">
+        <div class="card-header">Opening Balance</div>
+        <div class="card-body">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="balance" id="credit" value="Credit">
+            <label class="form-check-label" for="credit">Credit</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="balance" id="debit" value="Debit">
+            <label class="form-check-label" for="debit">Debit</label>
+          </div>
+          <input type="number" class="form-control mt-3" placeholder="Amount">
+        </div>
+      </div>
+
+      <!-- Custom Fields -->
+      <div class="card mb-4">
+        <div class="card-header">Custom Fields</div>
+        <div class="card-body">
+          <input type="text" class="form-control mb-2" placeholder="License No.">
+          <input type="text" class="form-control mb-2" placeholder="Custom Field 1">
+          <input type="text" class="form-control" placeholder="Custom Field 2">
+        </div>
+      </div>
+
+      <!-- Additional Details -->
+      <div class="card mb-4">
+        <div class="card-header">Additional Details</div>
+        <div class="card-body">
+          <input type="text" class="form-control mb-2" placeholder="Fax No.">
+          <input type="text" class="form-control mb-2" placeholder="Website">
+          <input type="text" class="form-control mb-2" placeholder="Credit Limit">
+          <input type="date" class="form-control mb-2">
+          <textarea class="form-control mb-2" placeholder="Note"></textarea>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="enableCompany">
+            <label class="form-check-label" for="enableCompany">
+              Company will be visible on all documents.
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <button class="btn btn-secondary" id="close"><a href="customer.html">Close</a></button>
+        <button class="btn btn-success">Save</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
+

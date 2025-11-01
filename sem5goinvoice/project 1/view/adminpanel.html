@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel Slide</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+    }
+
+    /* Toggle button (admin icon) */
+    .admin-icon {
+      padding: 10px 15px;
+      background: #0067AF;
+      color: white;
+      cursor: pointer;
+      width: fit-content;
+      border-radius: 5px;
+      margin: 20px;
+    }
+
+    /* Side Panel */
+    .side-panel {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 320px;
+      height: 100vh;
+      background: white;
+      box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+      transition: right 0.3s ease;
+      z-index: 999;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .side-panel.active {
+      right: 0;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header .info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header .circle {
+      width: 40px;
+      height: 40px;
+      background: #ccc;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      font-weight: bold;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .section {
+      margin-top: 20px;
+    }
+
+    .section button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      font-weight: bold;
+      background: #00C99C;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .section button:last-child {
+      background: #00A3FF;
+    }
+
+    .quick-support {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .quick-support .card {
+      background: #f6f6f6;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 13px;
+    }
+
+    .top-buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+ 
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .link {
+      color: #00A3FF;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Admin icon to open panel -->
+<div class="admin-icon" onclick="togglePanel()"></div>
+
+<!-- Side Panel -->
+<div class="side-panel" id="adminPanel">
+  <div class="header">
+    <div class="info">
+      <div class="circle">MA</div>
+      <div>
+        <div><strong>User</strong></div>
+        <div style="font-size: 13px;">Admin</div>
+      </div>
+    </div>
+    <button class="close-btn" onclick="togglePanel()">×</button>
+  </div>
+
+  <div class="row" style="margin-top: 20px;">
+    <span>➕ Add New Business</span>
+    <a class="link" href="#">Log Out</a>
+  </div>
+
+  <div class="row">
+    <span>Plan</span>
+    <span>Free</span>
+  </div>
+
+
+  <div class="section">
+    <h4>Quick Support</h4>
+    <div class="quick-support">
+      <div class="card">
+        📞 +91 7043146478<br/>
+        <small>10 AM to 7 PM - Everyday</small>
+      </div>
+      <div class="card">
+        📧 help@goinvoivce.com<br/>
+        <small>We usually reply within 1 working day</small>
+      </div>
+      <div class="card" style="grid-column: span 2;">
+        📚 Knowledge Base<br/>
+        <small>100+ Questions answered with Screenshots</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <button>GENERATE SUPPORT PIN</button>
+    <button>Start Trial</button>
+  </div>
+</div>
+
+<!-- JS for Toggle -->
+<script>
+  function togglePanel() {
+    document.getElementById('adminPanel').classList.toggle('active');
+  }
+</script>
+
+</body>
+</html>
